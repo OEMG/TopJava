@@ -1,13 +1,13 @@
 package ru.javawebinar.topjava.repository;
 
-import java.util.Collection;
+import java.util.List;
 
 public interface Repository<T> {
-    void save(T entity);
+    T save(T entity);
 
-    T get(Integer id);
+    T get(int id);
 
-    void delete(Integer id);
+    void delete(int id);
 
-    Collection<T> getAll();
+    List<T> getAll();
 }
