@@ -18,45 +18,49 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class MealServlet extends HttpServlet {
     private static final Logger log = getLogger(MealServlet.class);
-    private Repository<Meal> inMemRep;
+    private Repository<Meal> mealRepository;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
-        inMemRep = new InMemoryMealRepository();
+        mealRepository = new InMemoryMealRepository();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        log.debug("redirect to meals");
         String action = request.getParameter("action");
         if (action == null) {
-            request.setAttribute("meals", MealsUtil.filteredByStreams(inMemRep.getAll(), null, null, MealsUtil.CALORIES_PER_DAY));
+            log.debug("get all meals");
+            request.setAttribute("meals", MealsUtil.filteredByStreams(mealRepository.getAll(), null, null, MealsUtil.CALORIES_PER_DAY));
             request.getRequestDispatcher("/meals.jsp").forward(request, response);
         } else if (action.equals("delete")) {
+            log.debug("delete meal");
             int id = Integer.parseInt(request.getParameter("id"));
-            inMemRep.delete(id);
+            mealRepository.delete(id);
             response.sendRedirect("meals");
         } else if (action.equals("add")) {
+            log.debug("add meal");
             Meal meal = new Meal(LocalDateTime.now(), "", 0);
             request.setAttribute("meal", meal);
             request.getRequestDispatcher("/edit.jsp").forward(request, response);
         } else if (action.equals("update")) {
+            log.debug("update meal");
             int id = Integer.parseInt(request.getParameter("id"));
-            Meal meal = inMemRep.get(id);
+            Meal meal = mealRepository.get(id);
             request.setAttribute("meal", meal);
             request.getRequestDispatcher("/edit.jsp").forward(request, response);
         }
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         Meal meal = new Meal(id.isEmpty() ? null : Integer.valueOf(id),
                 LocalDateTime.parse(request.getParameter("dateTime")),
                 request.getParameter("description"),
                 Integer.parseInt(request.getParameter("calories")));
-        inMemRep.save(meal);
+        log.debug("save meal: {}", meal);
+        mealRepository.save(meal);
         response.sendRedirect("meals");
     }
 }

@@ -3,7 +3,7 @@ package ru.javawebinar.topjava.model;
 import java.time.LocalDateTime;
 
 public class MealTo {
-    private Integer id;
+    private int id;
 
     private final LocalDateTime dateTime;
 

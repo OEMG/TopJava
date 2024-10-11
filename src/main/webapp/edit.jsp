@@ -9,6 +9,7 @@
 <body>
 <section>
     <h1>Edit meal</h1>
+    <jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>
     <form action="meals" method="post">
         <input type="hidden" name="id" value="${meal.id}">
         <table>
