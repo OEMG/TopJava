@@ -92,4 +92,10 @@ public class User extends AbstractNamedEntity {
                 ", caloriesPerDay=" + caloriesPerDay +
                 '}';
     }
+
+//    @Override
+//    public int compareTo(User o) {
+//        int cmp = name.compareTo(o.name);
+//        return cmp != 0 ? cmp : email.compareTo(o.email);
+//    }
 }
