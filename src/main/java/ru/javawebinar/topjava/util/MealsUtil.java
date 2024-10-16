@@ -18,14 +18,13 @@ public class MealsUtil {
     public static final int DEFAULT_CALORIES_PER_DAY = 2000;
 
     public static final List<Meal> meals = Arrays.asList(
-            //4.2: SecurityUtil может использоваться только на слое web
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак", 500),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед", 1000),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 20, 0), "Ужин", 500),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 0, 0), "Еда на граничное значение", 100),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 10, 0), "Завтрак", 1000),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед", 500),
-            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин", 410)
+            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак (userId=1)", 500),
+            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 30, 13, 0), "Обед (userId=1)", 1000),
+            new Meal(1, LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин (userId=1)", 2001),
+            new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 30, 0, 0), "Еда на граничное значение  (userId=2)", 2002),
+            new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 30, 10, 0), "Завтрак  (userId=2)", 1000),
+            new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 13, 0), "Обед  (userId=2)", 500),
+            new Meal(2, LocalDateTime.of(2020, Month.JANUARY, 31, 20, 0), "Ужин  (userId=2)", 410)
     );
 
     public static List<MealTo> getTos(Collection<Meal> meals, int caloriesPerDay) {
