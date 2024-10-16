@@ -28,8 +28,13 @@ public class InMemoryMealRepository implements MealRepository {
             repository.put(meal.getId(), meal);
             return meal;
         }
-        return repository.computeIfPresent(meal.getId(), (id, oldMeal) ->
-                oldMeal.getUserId() == userId ? meal : null);
+        return repository.computeIfPresent(meal.getId(), (id, oldMeal) -> {
+            if (oldMeal.getUserId() == userId && !oldMeal.getId().equals(meal.getId())) {
+                return meal;
+            } else {
+                throw new IllegalArgumentException("You do not have permission to update this meal.");
+            }
+        });
     }
 
     @Override
