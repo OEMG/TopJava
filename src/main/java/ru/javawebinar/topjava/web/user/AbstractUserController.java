@@ -9,7 +9,7 @@ import ru.javawebinar.topjava.service.UserService;
 import java.util.List;
 
 import static ru.javawebinar.topjava.util.ValidationUtil.assureIdConsistent;
-import static ru.javawebinar.topjava.util.ValidationUtil.checkNew;
+import static ru.javawebinar.topjava.util.ValidationUtil.checkIsNew;
 
 public abstract class AbstractUserController {
     protected final Logger log = LoggerFactory.getLogger(getClass());
@@ -29,7 +29,7 @@ public abstract class AbstractUserController {
 
     public User create(User user) {
         log.info("create {}", user);
-        checkNew(user);
+        checkIsNew(user);
         return service.create(user);
     }
 

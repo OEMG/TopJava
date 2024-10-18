@@ -6,12 +6,12 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 
 public class ValidationUtil {
 
-    public static <T> T checkNotFoundWithId(T object, int id) {
-        checkNotFoundWithId(object != null, id);
+    public static <T> T checkNotFound(T object, int id) {
+        checkNotFound(object != null, id);
         return object;
     }
 
-    public static void checkNotFoundWithId(boolean found, int id) {
+    public static void checkNotFound(boolean found, int id) {
         checkNotFound(found, "id=" + id);
     }
 
@@ -26,7 +26,7 @@ public class ValidationUtil {
         }
     }
 
-    public static void checkNew(AbstractBaseEntity entity) {
+    public static void checkIsNew(AbstractBaseEntity entity) {
         if (!entity.isNew()) {
             throw new IllegalArgumentException(entity + " must be new (id=null)");
         }
