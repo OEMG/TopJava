@@ -32,7 +32,7 @@ public class InMemoryMealRepository implements MealRepository {
             if (oldMeal.getUserId() == userId) {
                 return meal;
             } else {
-                throw new IllegalArgumentException("You do not have permission to update this meal.");
+                return oldMeal;
             }
         });
     }
@@ -40,13 +40,16 @@ public class InMemoryMealRepository implements MealRepository {
     @Override
     public boolean delete(int id, int userId) {
         Meal meal = repository.get(id);
-        return meal.getUserId() == userId && repository.remove(id) != null;
+        if (meal == null || meal.getUserId() != userId) {
+            return false;
+        }
+        return repository.remove(id) != null;
     }
 
     @Override
     public Meal get(int id, int userId) {
         Meal meal = repository.get(id);
-        return meal.getUserId() == userId ? meal : null;
+        return (meal != null && meal.getUserId() == userId) ? meal : null;
     }
 
     @Override
