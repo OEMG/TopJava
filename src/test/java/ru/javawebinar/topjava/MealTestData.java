@@ -13,9 +13,9 @@ import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 
 public class MealTestData {
     public static final int MEAL_ID_1 = START_SEQ + 3;
-    public static final int TEST_ID = 123;
-    public static final LocalDate start = LocalDate.of(2024, 10, 20);
-    public static final LocalDate end = LocalDate.of(2024, 10, 21);
+    public static final int NOT_FOUND = 123;
+    public static final LocalDate START = LocalDate.of(2024, 10, 20);
+    public static final LocalDate END = LocalDate.of(2024, 10, 21);
 
     public static final Meal userMeal1 = new Meal(MEAL_ID_1, of(2024, 10, 20, 9, 0), "Завтрак", 1001);
     public static final Meal userMeal2 = new Meal(MEAL_ID_1 + 1, of(2024, 10, 20, 14, 0), "Обед", 1002);
@@ -39,7 +39,7 @@ public class MealTestData {
     }
 
     public static Meal getUpdated() {
-        return new Meal(MEAL_ID_1, userMeal1.getDateTime(), "Update meal", 777);
+        return new Meal(MEAL_ID_1, of(2025, 10, 10, 10, 10), "Update meal", 777);
     }
 
     public static void assertMatch(Meal actual, Meal expected) {
