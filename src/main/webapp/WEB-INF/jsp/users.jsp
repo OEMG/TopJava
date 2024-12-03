@@ -8,6 +8,11 @@
 <body>
 <script src="resources/js/topjava.common.js" defer></script>
 <script src="resources/js/topjava.users.js" defer></script>
+<script>
+    const messages = {
+        search: "<spring:message code='common.search'/>",
+    };
+</script>
 <jsp:include page="fragments/bodyHeader.jsp"/>
 
 <div class="jumbotron pt-4">
