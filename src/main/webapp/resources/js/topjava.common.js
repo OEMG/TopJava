@@ -38,6 +38,29 @@ function updateTable() {
     });
 }
 
+function filterTable() {
+    updateTableWithFilter(ctx.ajaxUrl + "filter", $("#filter").serialize());
+}
+
+function resetFilter() {
+    $('#filter').trigger('reset');
+    updateTableWithFilter(ctx.ajaxUrl);
+}
+
+function updateTableWithFilter(url, params = {}) {
+    $.ajax({
+        type: "GET",
+        url: url,
+        data: params,
+        success: function (data) {
+            ctx.datatableApi.clear().rows.add(data).draw();
+        },
+        error: function (jqXHR) {
+            failNoty(jqXHR);
+        }
+    });
+}
+
 function save() {
     $.ajax({
         type: "POST",

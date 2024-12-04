@@ -1,7 +1,7 @@
 const mealAjaxUrl = "profile/meals/";
 
 const ctx = {
-    ajaxUrl: mealAjaxUrl,
+    ajaxUrl: mealAjaxUrl
 };
 
 $(function () {
