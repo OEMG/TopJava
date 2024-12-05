@@ -32,22 +32,7 @@ function deleteRow(id) {
     });
 }
 
-function updateTable() {
-    $.get(ctx.ajaxUrl, function (data) {
-        ctx.datatableApi.clear().rows.add(data).draw();
-    });
-}
-
-function filterTable() {
-    updateTableWithFilter(ctx.ajaxUrl + "filter", $("#filter").serialize());
-}
-
-function resetFilter() {
-    $('#filter').trigger('reset');
-    updateTableWithFilter(ctx.ajaxUrl);
-}
-
-function updateTableWithFilter(url, params = {}) {
+function updateTable(url = ctx.ajaxUrl, params = {}) {
     $.ajax({
         type: "GET",
         url: url,

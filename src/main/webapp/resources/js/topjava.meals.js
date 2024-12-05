@@ -40,3 +40,12 @@ $(function () {
         })
     );
 });
+
+function resetFilter() {
+    $('#filter').trigger('reset');
+    updateTable(ctx.ajaxUrl);
+}
+
+function filterTable() {
+    updateTable(ctx.ajaxUrl + "filter", $("#filter").serialize());
+}
